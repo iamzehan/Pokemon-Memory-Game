@@ -1,35 +1,71 @@
-export default function Cards(){
-    return (
-        <div className="
+import { useState, useEffect } from "react";
+import { getRandomPokemon } from "../lib/data";
+import type { PokemonItem } from "../lib/data";
+import { shuffleArray } from "../lib/data";
+
+export default function Cards() {
+  const [data, setData] = useState<PokemonItem[]>();
+  useEffect(() => {
+    async function load() {
+      if (!data) {
+        const pokemons = await getRandomPokemon();
+        setData(pokemons);
+        localStorage.setItem("data", JSON.stringify(pokemons));
+      }
+      return;
+    }
+    load();
+  }, [data]);
+
+  function handleShuffle() {
+    if (data) {
+      const shuffledData = [...shuffleArray(data)];
+      setData(shuffledData);
+      console.log(data);
+    }
+  }
+  return (
+    <div
+      className="
         grid grid-flow-row grid-cols-2 
         gap-2 lg:gap-0 xl:max-w-[60%] justify-self-center
         lg:grid-cols-4 md:grid-cols-3
-        m-3">
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-        </div>
-    )
+        m-3"
+    >
+      {data?.map((pokemon) => {
+        return (
+          <Card
+            key={pokemon.id}
+            image={pokemon.image}
+            name={pokemon.name}
+            shuffle={handleShuffle}
+          />
+        );
+      })}
+    </div>
+  );
 }
 
-function Card(){
-    return (
-    <div 
-    className="
+function Card({
+  name,
+  image,
+  shuffle,
+}: {
+  name: string;
+  image: string;
+  shuffle: () => void;
+}) {
+  return (
+    <div
+      className="
     p-3 rounded-xl bg-amber-300 shadow flex flex-col gap-2 items-center
     lg:scale-95 max-w-[300px]
     active:bg-amber-400 hover:bg-amber-500 hover:md:scale-100 transition-all duration-300 cursor-pointer
-    ">
-        <img 
-        alt="img" 
-        className="rounded-lg"
-        src="https://www.muraldecal.com/en/img/pkm010-jpg/folder/products-listado-merchanthover/stickers-pikachu-sitting-kawaii-pokemon.jpg"/>
-        <p className="text-blue-600 text-2xl">Pickachu</p>
+    "
+      onClick={() => shuffle()}
+    >
+      <img alt="img" className="rounded-lg h-30 aspect-square drop-shadow-md drop-shadow-zinc-950" src={image} />
+      <p className="text-blue-600 text-2xl">{name}</p>
     </div>
-    )
+  );
 }
