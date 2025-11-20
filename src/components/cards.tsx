@@ -3,7 +3,15 @@ import { getRandomPokemon } from "../lib/data";
 import type { PokemonItem } from "../lib/data";
 import { shuffleArray } from "../lib/data";
 
-export default function Cards() {
+export default function Cards({
+  score,
+  setScore,
+  setBest,
+}: {
+  score: number;
+  setScore: React.Dispatch<React.SetStateAction<number>>;
+  setBest: React.Dispatch<React.SetStateAction<number>>;
+}) {
   const [data, setData] = useState<PokemonItem[]>();
   useEffect(() => {
     async function load() {
@@ -21,9 +29,21 @@ export default function Cards() {
     if (data) {
       const shuffledData = [...shuffleArray(data)];
       setData(shuffledData);
-      console.log(data);
     }
   }
+  const [choices, setChoices] = useState<string[]>([]);
+
+  const handleChoice = (choice: string) => {
+    if (choices.includes(choice)) {
+      setBest((prev) => Math.max(prev, score));
+      setScore(0);
+      setChoices([]);
+    } else {
+      setChoices((prev) => [...prev, choice]);
+      setScore((prev) => prev + 1);
+    }
+  };
+
   return (
     <div
       className="
@@ -39,6 +59,7 @@ export default function Cards() {
             image={pokemon.image}
             name={pokemon.name}
             shuffle={handleShuffle}
+            choose = {handleChoice}
           />
         );
       })}
@@ -50,10 +71,12 @@ function Card({
   name,
   image,
   shuffle,
+  choose,
 }: {
   name: string;
   image: string;
   shuffle: () => void;
+  choose: (name:string)=> void;
 }) {
   return (
     <div
@@ -62,9 +85,13 @@ function Card({
     lg:scale-95 max-w-[300px]
     active:bg-amber-400 hover:bg-amber-500 hover:md:scale-100 transition-all duration-300 cursor-pointer
     "
-      onClick={() => shuffle()}
+      onClick={() => {shuffle(); choose(name)}}
     >
-      <img alt="img" className="rounded-lg h-30 aspect-square drop-shadow-md drop-shadow-zinc-950" src={image} />
+      <img
+        alt="img"
+        className="rounded-lg h-30 aspect-square drop-shadow-md drop-shadow-zinc-950"
+        src={image}
+      />
       <p className="text-blue-600 text-2xl">{name}</p>
     </div>
   );
