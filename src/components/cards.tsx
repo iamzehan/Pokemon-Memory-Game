@@ -92,7 +92,7 @@ function Card({
         className="rounded-lg h-30 aspect-square drop-shadow-md drop-shadow-zinc-950"
         src={image}
       />
-      <p className="text-blue-600 text-2xl">{name}</p>
+      <p className="text-blue-600 text-2xl text-center w-full">{name}</p>
     </div>
   );
 }
