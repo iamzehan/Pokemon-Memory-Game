@@ -16,8 +16,8 @@ export default function Header({score, best, setRefresh} : {
         <p>Score: {score}</p>
         <p>Best Score: {best}</p>
       </div>
-      <button onClick={()=>setRefresh(true)}>
-        Refresh <Loop/>
+      <button onClick={()=>setRefresh(true)} className='hidden md:block p-2'>
+        <span>Refresh</span> <Loop/>
       </button>
     </header>
   );
