@@ -49,7 +49,7 @@ export default function Cards({
       className="
         grid grid-flow-row grid-cols-2
         gap-2 lg:gap-0 xl:max-w-[60%] justify-self-center
-        lg:grid-cols-4 md:grid-cols-3
+        lg:grid-cols-4 md:grid-cols-3 pb-30
         m-3"
     >
       {data?.map((pokemon) => {
@@ -82,7 +82,7 @@ function Card({
     <div
       className="
     p-3 rounded-xl bg-amber-300 shadow flex flex-col gap-2 items-center
-    lg:scale-95 max-w-[200px]
+    lg:scale-95 max-w-[300px] xl:max-w-[400px]
     active:bg-amber-400 hover:bg-amber-500 hover:md:scale-100 transition-all duration-300 cursor-pointer
     "
       onClick={() => {
