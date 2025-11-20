@@ -14,8 +14,8 @@ function App() {
         <Header score={score} best={best} />
         <Cards score={score} setScore={setScore} setBest={setBest}/>
       </main>
-      <footer className="w-screen text-center md:p-10 py-5 fixed bottom-0 z-500 bg-gray-950 font-bold">Made By: 
-        <a rel="noopener" href="http://ziaulkarim.netlify.app" className="font-[stormfaze] text-purple-400 underline hover:text-amber-400" target="_blank"> Md Ziaul Karim</a>
+      <footer className="w-screen text-center md:p-10 py-5 fixed bottom-0 z-500 bg-gray-950 font-bold">Made with <span className="animate-pulse">💌</span> By:{" "}
+      <a rel="noopener" href="http://ziaulkarim.netlify.app" className="font-[stormfaze] text-purple-400 underline hover:text-amber-400" target="_blank">Md Ziaul Karim</a>
         </footer>
     </>
   );
