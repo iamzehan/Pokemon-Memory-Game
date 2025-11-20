@@ -1,6 +1,8 @@
-export default function Header({score, best} : {
+import { Loop } from '@mui/icons-material';
+export default function Header({score, best, setRefresh} : {
     score:number,
-    best:number
+    best:number,
+    setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   return (
     <header className="
@@ -10,11 +12,13 @@ export default function Header({score, best} : {
         <img src="./logo.svg" className="h-10" alt="logo" />
         <p className="text-2xl md:text-3xl">Memory Game</p>
       </div>
-
       <div className="text-left flex-1 text-shadow-lg">
         <p>Score: {score}</p>
         <p>Best Score: {best}</p>
       </div>
+      <button onClick={()=>setRefresh(true)}>
+        Refresh <Loop/>
+      </button>
     </header>
   );
 }
