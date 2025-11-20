@@ -47,7 +47,7 @@ export default function Cards({
   return (
     <div
       className="
-        grid grid-flow-row grid-cols-2 
+        grid grid-flow-row grid-cols-2
         gap-2 lg:gap-0 xl:max-w-[60%] justify-self-center
         lg:grid-cols-4 md:grid-cols-3
         m-3"
@@ -59,7 +59,7 @@ export default function Cards({
             image={pokemon.image}
             name={pokemon.name}
             shuffle={handleShuffle}
-            choose = {handleChoice}
+            choose={handleChoice}
           />
         );
       })}
@@ -76,23 +76,29 @@ function Card({
   name: string;
   image: string;
   shuffle: () => void;
-  choose: (name:string)=> void;
+  choose: (name: string) => void;
 }) {
   return (
     <div
       className="
     p-3 rounded-xl bg-amber-300 shadow flex flex-col gap-2 items-center
-    lg:scale-95 max-w-[300px]
+    lg:scale-95 max-w-[200px]
     active:bg-amber-400 hover:bg-amber-500 hover:md:scale-100 transition-all duration-300 cursor-pointer
     "
-      onClick={() => {shuffle(); choose(name)}}
+      onClick={() => {
+        shuffle();
+        choose(name);
+      }}
     >
-      <img
-        alt="img"
-        className="rounded-lg h-30 aspect-square drop-shadow-md drop-shadow-zinc-950"
-        src={image}
-      />
-      <p className="text-blue-600 text-2xl text-center w-full">{name}</p>
+      <div className="bg-white w-full aspect-square items-center justify-center flex flex-col rounded-lg">
+        <img
+          alt="img"
+          className="rounded-lg h-30 aspect-square drop-shadow-md drop-shadow-zinc-950"
+          src={image}
+        />
+        </div>
+        <p className="text-blue-600 text-2xl text-center w-full">{name}</p>
+      
     </div>
   );
 }
