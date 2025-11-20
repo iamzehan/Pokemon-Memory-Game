@@ -14,6 +14,9 @@ function App() {
         <Header score={score} best={best} />
         <Cards score={score} setScore={setScore} setBest={setBest}/>
       </main>
+      <footer className="w-screen text-center p-10 fixed bottom-0 z-500 bg-gray-950 font-bold">Made By: 
+        <a href="http://ziaulkarim.netilfy.app" className="font-[stormfaze] text-purple-400 underline hover:text-amber-400" target="_blank"> Md Ziaul Karim</a>
+        </footer>
     </>
   );
 }
