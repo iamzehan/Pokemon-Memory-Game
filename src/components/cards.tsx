@@ -45,18 +45,18 @@ export default function Cards({
 
   const handleChoice = (choice: string) => {
     if (choices.includes(choice)) {
-      setBest(prev => Math.max(prev, score));
+      setBest((prev) => Math.max(prev, score));
       setScore(0);
       setChoices([]);
     } else {
-      setChoices(prev => [...prev, choice]);
-      setScore(prev => prev + 1);
+      setChoices((prev) => [...prev, choice]);
+      setScore((prev) => prev + 1);
     }
   };
 
   return (
     <div className="grid grid-flow-row grid-cols-2 gap-2 lg:gap-0 xl:max-w-[60%] justify-self-center lg:grid-cols-4 md:grid-cols-3 pb-30 m-3">
-      {data.map(pokemon => (
+      {data.map((pokemon) => (
         <Card
           key={pokemon.id}
           image={pokemon.image}
@@ -82,27 +82,29 @@ export function Card({
 }) {
   return (
     <>
-    <div
-    data-testid = "card"
-      className="
+      <div
+        data-testid="card"
+        className="
     p-3 rounded-xl bg-amber-300 shadow flex flex-col gap-2 items-center
     lg:scale-95 max-w-[300px] xl:max-w-[400px]
     active:bg-amber-400 hover:bg-amber-500 hover:md:scale-100 transition-all duration-300 cursor-pointer
     "
-      onClick={() => {
-        shuffle();
-        choose(name);
-      }}
-    >
-      <div className="bg-white w-full aspect-square items-center justify-center flex flex-col rounded-lg">
-        <img
-          alt="img"
-          className="rounded-lg h-30 aspect-square drop-shadow-md drop-shadow-zinc-950"
-          src={image}
-        />
+        onClick={() => {
+          shuffle();
+          choose(name);
+        }}
+      >
+        <div className="bg-white w-full aspect-square items-center justify-center flex flex-col rounded-lg">
+          <img
+            alt="img"
+            className="rounded-lg h-30 aspect-square drop-shadow-md drop-shadow-zinc-950"
+            src={image}
+          />
+        </div>
+        <p className="text-blue-600 md:text-2xl text-center w-full wrap-anywhere">
+          {name}
+        </p>
       </div>
-      <p className="text-blue-600 md:text-2xl text-center w-full wrap-anywhere">{name}</p>
-    </div>
     </>
   );
 }
