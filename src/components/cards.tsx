@@ -69,7 +69,7 @@ export default function Cards({
   );
 }
 
-function Card({
+export function Card({
   name,
   image,
   shuffle,
@@ -81,7 +81,9 @@ function Card({
   choose: (name: string) => void;
 }) {
   return (
+    <>
     <div
+    data-testid = "card"
       className="
     p-3 rounded-xl bg-amber-300 shadow flex flex-col gap-2 items-center
     lg:scale-95 max-w-[300px] xl:max-w-[400px]
@@ -99,7 +101,8 @@ function Card({
           src={image}
         />
       </div>
-      <p className="text-blue-600 text-2xl text-center w-full">{name}</p>
+      <p className="text-blue-600 md:text-2xl text-center w-full wrap-anywhere">{name}</p>
     </div>
+    </>
   );
 }
