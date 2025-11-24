@@ -8,7 +8,7 @@ function App() {
   const [refresh, setRefresh] = useState<boolean>(false);
   return (
     <>
-      <main className="h-screen w-screen font-[stormfaze] text-yellow-500 text-shadow-2xs">
+      <main className="h-fit w-screen font-[stormfaze] text-yellow-500 text-shadow-2xs">
         <Header score={score} best={best} setRefresh={setRefresh} />
         <Cards
           score={score}
